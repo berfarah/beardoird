@@ -24,3 +24,7 @@
 [[constraint]]
   name = "github.com/nlopes/slack"
   version = "0.1.0"
+
+[[constraint]]
+  name = "github.com/go-redis/redis"
+  version = "6.8.0"
