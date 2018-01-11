@@ -3,55 +3,85 @@ package slack
 import (
 	"errors"
 
+	"github.com/berfarah/beardroid/brain"
 	"github.com/nlopes/slack"
 )
 
+type User struct{ slack.User }
+
+func (u User) ID() string        { return u.User.ID }
+func (u User) Namespace() string { return "slack:user" }
+func (u User) Indices() map[string]string {
+	return map[string]string{"username": u.Name}
+}
+
+type Channel struct{ slack.Channel }
+
+func (c Channel) ID() string        { return c.Channel.ID }
+func (c Channel) Namespace() string { return "slack:channel" }
+func (c Channel) Indices() map[string]string {
+	return map[string]string{"name": c.Name}
+}
+
+type DM struct {
+	Username     string
+	UserID       string
+	Conversation string
+}
+
+func (d DM) ID() string        { return d.Conversation }
+func (d DM) Namespace() string { return "slack:dm" }
+func (d DM) Indices() map[string]string {
+	return map[string]string{"username": d.Username, "user_id": d.UserID}
+}
+
 type cache struct {
-	api      *slack.Client
-	Users    map[string]slack.User
-	Channels map[string]slack.Channel
-	DMs      map[string]string
+	api   *slack.Client
+	brain *brain.Brain
 }
 
-func NewCache(api *slack.Client) *cache {
-	return &cache{
-		api:      api,
-		Users:    make(map[string]slack.User),
-		Channels: make(map[string]slack.Channel),
-		DMs:      make(map[string]string),
-	}
+func newCache(api *slack.Client) *cache {
+	return &cache{api: api, brain: brain.New()}
 }
 
-func (c *cache) Populate() error {
+func (c *cache) Fetch() error {
 	users, err := c.api.GetUsers()
 	if err != nil {
-		return errors.New("Couldn't pre-populate users")
-	}
-
-	userIDToName := make(map[string]string)
-	for _, u := range users {
-		c.Users[u.Name] = u
-		userIDToName[u.ID] = u.Name
+		return errors.New("Couldn't fetch users")
 	}
 
 	channels, err := c.api.GetChannels(true)
 	if err != nil {
-		return errors.New("Couldn't pre-populate channels")
-	}
-	for _, ch := range channels {
-		c.Channels[ch.Name] = ch
+		return errors.New("Couldn't fetch channels")
 	}
 
 	dms, err := c.api.GetIMChannels()
 	if err != nil {
-		return errors.New("Couldn't pre-populate DMs")
+		return errors.New("Couldn't fetch DMs")
 	}
+
+	return c.Populate(users, channels, dms)
+}
+
+func (c *cache) Populate(users []slack.User, channels []slack.Channel, dms []slack.IM) error {
+	userIDToName := make(map[string]string)
+	for _, u := range users {
+		c.brain.Write(User{u})
+		userIDToName[u.ID] = u.Name
+	}
+
+	for _, ch := range channels {
+		c.brain.Write(Channel{ch})
+	}
+
 	for _, dm := range dms {
-		name, ok := userIDToName[dm.User]
-		if !ok {
-			continue
+		if name, ok := userIDToName[dm.User]; ok {
+			c.brain.Write(DM{
+				Conversation: dm.ID,
+				UserID:       dm.User,
+				Username:     name,
+			})
 		}
-		c.DMs[name] = dm.ID
 	}
 
 	return nil

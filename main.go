@@ -6,7 +6,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/berfarah/beardroid/brain"
 	slackerino "github.com/berfarah/beardroid/slack"
 )
 
@@ -20,6 +19,5 @@ func main() {
 
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	adapter := slackerino.New(secret, logger)
-	brain.Write(nil)
 	adapter.Listen()
 }

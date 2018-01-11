@@ -22,20 +22,32 @@ func New(secret string, logger *log.Logger) *Adapter {
 }
 
 func (a *Adapter) Listen() {
+	// var self *slack.UserInfo
 	a.rtm = a.api.NewRTM()
 	go a.rtm.ManageConnection()
 
-	cache := NewCache(a.api)
-	if err := cache.Populate(); err != nil {
-		a.logger.Fatalln(err)
-	}
+	cache := newCache(a.api)
 
 	for msg := range a.rtm.IncomingEvents {
 		fmt.Print("Event Received: ")
 		switch ev := msg.Data.(type) {
 		case *slack.HelloEvent:
+			fmt.Println("Hello")
 
 		case *slack.ConnectedEvent:
+			fmt.Printf("Connected: %v\n", ev.ConnectionCount)
+			cache.Populate(
+				ev.Info.Users,
+				ev.Info.Channels,
+				ev.Info.IMs,
+			)
+		case *slack.MessageEvent:
+			fmt.Printf("Message: %v\n", ev)
+
+			if ev.Text != "heyy" {
+				continue
+			}
+
 			params := slack.PostMessageParameters{}
 			params.Attachments = []slack.Attachment{
 				slack.Attachment{
@@ -49,10 +61,13 @@ func (a *Adapter) Listen() {
 				},
 			}
 
-			a.api.PostMessage(cache.DMs["bernardo"], "ayy", params)
-
-		case *slack.MessageEvent:
-			fmt.Printf("Message: %v\n", ev)
+			dm := DM{Username: "bernardo"}
+			if err := cache.brain.Read(&dm); err != nil {
+				a.logger.Fatal(err)
+				return
+			}
+			a.api.PostMessage(dm.Conversation, "ayy", params)
+			a.rtm.SendMessage(a.rtm.NewOutgoingMessage("ayy", ev.Channel))
 
 		case *slack.RTMError:
 			fmt.Printf("Error: %s\n", ev.Error())
@@ -62,6 +77,7 @@ func (a *Adapter) Listen() {
 			return
 
 		default:
+			fmt.Printf("Unexpected: %v\n", msg.Data)
 
 			// Ignore other events..
 			// fmt.Printf("Unexpected: %v\n", msg.Data)
