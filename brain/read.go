@@ -14,7 +14,7 @@ func (c *Brain) readIndices(s Resource) (id string, err error) {
 		}
 
 		key := i.Namespace() + "_by_" + name + ":" + value
-		if err = c.cache.Get(key, &id); err == nil {
+		if err = c.store.Get(key, &id); err == nil {
 			break
 		}
 	}
@@ -35,7 +35,7 @@ func (c *Brain) Read(s Resource) error {
 		}
 	}
 
-	if err = c.cache.Get(s.Namespace()+":"+id, s); err != nil {
+	if err = c.store.Get(s.Namespace()+":"+id, s); err != nil {
 		return err
 	}
 

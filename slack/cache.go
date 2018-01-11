@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/berfarah/beardroid/brain"
+	"github.com/berfarah/beardroid/brain/redis"
 	"github.com/nlopes/slack"
 )
 
@@ -41,7 +42,8 @@ type cache struct {
 }
 
 func newCache(api *slack.Client) *cache {
-	return &cache{api: api, brain: brain.New()}
+	redis := redis.New("localhost:6379")
+	return &cache{api: api, brain: brain.New(redis)}
 }
 
 func (c *cache) Fetch() error {
