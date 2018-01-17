@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/berfarah/gobot"
   packages = [".","brain","brain/redis"]
-  revision = "630ebb83985f0d7fa0507c685008c7b6e2eed7db"
+  revision = "417deec6e711032d74db98c5b8161c408b99f4ce"
 
 [[projects]]
   name = "github.com/go-redis/cache"
@@ -51,6 +51,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "51d3042c730c7d883c7550d144c103696c7043002e3cc454e6b2e7b9731a65cf"
+  inputs-digest = "c75bdb8613e7674f5743f12e880ee9579575009b5a691bb2148170a24996ed1a"
   solver-name = "gps-cdcl"
   solver-version = 1

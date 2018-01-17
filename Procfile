@@ -1,1 +1,1 @@
-bot: beardroid
+worker: beardroid

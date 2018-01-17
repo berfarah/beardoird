@@ -1,2 +1,5 @@
+[metadata.heroku]
+  root-package = "github.com/berfarah/beardroid"
+
 [[constraint]]
   name = "github.com/berfarah/gobot"
