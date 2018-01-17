@@ -1,0 +1,8 @@
+{
+  "name": "BearDroid",
+  "description": "Slack Bot",
+  "image": "heroku/go:latest",
+  "mount_dir": "src/github.com/berfarah/beardroid",
+  "website": "http://github.com/berfarah/beardroid",
+  "repository": "http://github.com/berfarah/beardroid"
+}
