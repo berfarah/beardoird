@@ -30,21 +30,25 @@ var client = &http.Client{}
 
 func Plugin(r *gobot.Robot) {
 	ticker := time.NewTicker(1 * time.Hour)
-	checkStock(r)
-	for range ticker.C {
+	go func() {
 		checkStock(r)
-	}
+		for range ticker.C {
+			checkStock(r)
+		}
+	}()
 }
 
 func checkStock(r *gobot.Robot) {
 	decodeRequest()
 	if msg, ok := stockMessage(); ok {
+		r.Logger.Debug("Ludlow: Items in stock")
 		r.Send(gobot.Message{
 			Channel: "@bernardo",
 			Text:    "",
 			Params:  msg,
 		})
 	}
+	r.Logger.Debug("Ludlow: No items in stock")
 }
 
 func stockMessage() (msg slack.PostMessageParameters, ok bool) {

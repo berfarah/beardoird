@@ -14,5 +14,6 @@ func main() {
 		redis.New(os.Getenv("REDIS_URL")),
 	)
 	r.Load(ludlow.Plugin)
+	r.Debug(true)
 	r.Connect()
 }

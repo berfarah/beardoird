@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/berfarah/gobot"
   packages = [".","brain","brain/redis"]
-  revision = "417deec6e711032d74db98c5b8161c408b99f4ce"
+  revision = "abee65ba28ecf225e910bf5c0b38ec78f11f79a8"
 
 [[projects]]
   name = "github.com/go-redis/cache"
@@ -16,8 +16,8 @@
 [[projects]]
   name = "github.com/go-redis/redis"
   packages = [".","internal","internal/consistenthash","internal/hashtag","internal/pool","internal/proto"]
-  revision = "abb85b0fb8a7f0ef7551677888d8d674d153c991"
-  version = "v6.8.1"
+  revision = "4021ace05686f632ff17fd824bbed229fc474cf8"
+  version = "v6.8.2"
 
 [[projects]]
   branch = "master"
@@ -31,10 +31,16 @@
   revision = "d86785d50d4be9c2e11cfbb0ed601f5dcb22899c"
 
 [[projects]]
+  name = "github.com/op/go-logging"
+  packages = ["."]
+  revision = "b2cb9fa56473e98db8caba80237377e83fe44db5"
+  version = "v1"
+
+[[projects]]
   name = "github.com/vmihailenco/msgpack"
   packages = [".","codes"]
-  revision = "40b1cac89761d843bbb96b8b27c746ba5937322a"
-  version = "v3.2.3"
+  revision = "428cb44b01569a0bc7d3ea5ab3b93208eddf02f6"
+  version = "v3.2.4"
 
 [[projects]]
   branch = "master"
