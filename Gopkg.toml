@@ -3,3 +3,4 @@
 
 [[constraint]]
   name = "github.com/berfarah/gobot"
+  branch = "web"

@@ -1,1 +1,1 @@
-worker: beardroid
+web: beardroid

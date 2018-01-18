@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"os"
 
 	"github.com/berfarah/beardroid/ludlow"
@@ -13,7 +14,14 @@ func main() {
 		os.Getenv("SLACK_TOKEN"),
 		redis.New(os.Getenv("REDIS_URL")),
 	)
-	r.Load(ludlow.Plugin)
+	r.Install(
+		ludlow.Plugin,
+	)
+
+	r.Router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Hello World"))
+	}).Methods("GET")
+
 	r.Debug(true)
-	r.Connect()
+	r.Start(":" + os.Getenv("PORT"))
 }
