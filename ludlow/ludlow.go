@@ -47,6 +47,7 @@ func checkStock(r *gobot.Robot) {
 			Text:    "",
 			Params:  msg,
 		})
+		return
 	}
 	r.Logger.Debug("Ludlow: No items in stock")
 }
@@ -94,8 +95,8 @@ func decodeRequest() {
 	for sku, stock := range inventory {
 		if p, ok := productBySku[sku]; ok {
 			s := stock.(map[string]interface{})
-			if q, ok := s["quantity"].(int); ok {
-				p.Quantity = q
+			if q, ok := s["quantity"].(float64); ok {
+				p.Quantity = int(q)
 			}
 		}
 	}
