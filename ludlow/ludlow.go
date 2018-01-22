@@ -24,7 +24,7 @@ type Product struct {
 
 var productBySku = map[string]*Product{
 	"99104786265": &Product{"Navy", "99104786265", 0},
-	"99104786301": &Product{"Charcoal", "99104786301", 0},
+	// "99104786301": &Product{"Charcoal", "99104786301", 0},
 }
 var client = &http.Client{}
 
