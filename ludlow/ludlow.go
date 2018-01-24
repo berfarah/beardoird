@@ -13,6 +13,11 @@ import (
 	"github.com/nlopes/slack"
 )
 
+type main struct{}
+
+// Plugin is the exportable plugin
+var Plugin = main{}
+
 const productCode = "H2327"
 const url = "https://www.jcrew.com/p/mens_category/outerwear/topcoats/ludlow-topcoat-in-italian-woolcashmere-with-thinsulate/H2327"
 
@@ -28,24 +33,22 @@ var productBySku = map[string]*Product{
 }
 var client = &http.Client{}
 
-func Plugin(r *gobot.Robot) {
+func (m main) Load(r *gobot.Robot) {
 	ticker := time.NewTicker(1 * time.Hour)
-	go func() {
+	checkStock(r)
+	for range ticker.C {
 		checkStock(r)
-		for range ticker.C {
-			checkStock(r)
-		}
-	}()
+	}
 }
 
 func checkStock(r *gobot.Robot) {
 	decodeRequest()
 	if msg, ok := stockMessage(); ok {
 		r.Logger.Debug("Ludlow: Items in stock")
-		r.Send(gobot.Message{
-			Channel: "@bernardo",
-			Text:    "",
-			Params:  msg,
+		r.Chat.Send(gobot.Message{
+			Room:  "@bernardo",
+			Text:  "",
+			Extra: msg,
 		})
 		return
 	}

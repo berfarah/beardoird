@@ -2,10 +2,22 @@
 
 
 [[projects]]
-  branch = "web"
+  branch = "master"
   name = "github.com/berfarah/gobot"
-  packages = [".","brain","brain/redis"]
-  revision = "d3cab982fabc0ba9b879f8e85a50645aa9dad8bb"
+  packages = ["."]
+  revision = "48a30c27beb2df317ca3665152a7ba296e20e36d"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/berfarah/gobot-slack"
+  packages = ["."]
+  revision = "cbba0eeaff7058a0fbfa5f2c6b7978c5fde93cd9"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/berfarah/gobot-store-redis"
+  packages = ["."]
+  revision = "6a450f3a348eb702bff058fbef789dc487c230ce"
 
 [[projects]]
   name = "github.com/go-redis/cache"
@@ -23,7 +35,7 @@
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
-  revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
+  revision = "c65a0412e71e8b9b3bfd22925720d23c0f054237"
 
 [[projects]]
   name = "github.com/gorilla/context"
@@ -40,7 +52,8 @@
 [[projects]]
   name = "github.com/nlopes/slack"
   packages = ["."]
-  revision = "d86785d50d4be9c2e11cfbb0ed601f5dcb22899c"
+  revision = "c86337c0ef2486a15edd804355d9c73d2f2caed1"
+  version = "v0.1.0"
 
 [[projects]]
   name = "github.com/op/go-logging"
@@ -58,7 +71,7 @@
   branch = "master"
   name = "golang.org/x/net"
   packages = ["context","websocket"]
-  revision = "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec"
+  revision = "0ed95abb35c445290478a5348a7b38bb154135fd"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -69,6 +82,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "43082ccd89c3b62fcdaaf8c1952c75bc3f0ebcda9bd5773c976d7a7786edcc28"
+  inputs-digest = "9519b87b15805ca46257f079d1c5735c7218e7a1b69c2cb0b9dd84129fc6fe72"
   solver-name = "gps-cdcl"
   solver-version = 1

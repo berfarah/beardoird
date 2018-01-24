@@ -6,15 +6,15 @@ import (
 
 	"github.com/berfarah/beardroid/ludlow"
 	"github.com/berfarah/gobot"
-	"github.com/berfarah/gobot/brain/redis"
+	"github.com/berfarah/gobot-slack"
+	"github.com/berfarah/gobot-store-redis"
 )
 
 func main() {
-	r := gobot.New(
-		os.Getenv("SLACK_TOKEN"),
-		redis.New(os.Getenv("REDIS_URL")),
-	)
+	adapter := slack.New(os.Getenv("SLACK_TOKEN"))
+	r := gobot.New(adapter)
 	r.Install(
+		redis.New(os.Getenv("REDIS_URL")),
 		ludlow.Plugin,
 	)
 
@@ -23,5 +23,5 @@ func main() {
 	}).Methods("GET")
 
 	r.Debug(true)
-	r.Start(":" + os.Getenv("PORT"))
+	r.Run(":" + os.Getenv("PORT"))
 }
