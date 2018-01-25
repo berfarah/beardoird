@@ -46,9 +46,9 @@ func checkStock(r *gobot.Robot) {
 	if msg, ok := stockMessage(); ok {
 		r.Logger.Debug("Ludlow: Items in stock")
 		r.Chat.Send(gobot.Message{
-			Room:  "@bernardo",
-			Text:  "",
-			Extra: msg,
+			Room:   "@bernardo",
+			Text:   "",
+			Params: msg,
 		})
 		return
 	}

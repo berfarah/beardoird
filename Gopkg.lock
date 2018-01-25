@@ -2,22 +2,22 @@
 
 
 [[projects]]
-  branch = "master"
   name = "github.com/berfarah/gobot"
   packages = ["."]
-  revision = "48a30c27beb2df317ca3665152a7ba296e20e36d"
+  revision = "b8f8a6f0f76dbdd62b2ccdcee8ab7466a83d5733"
+  version = "v0.1.0"
 
 [[projects]]
   branch = "master"
   name = "github.com/berfarah/gobot-slack"
   packages = ["."]
-  revision = "cbba0eeaff7058a0fbfa5f2c6b7978c5fde93cd9"
+  revision = "0f5cb4f4a94c486545d273326866e30b68ba7104"
 
 [[projects]]
   branch = "master"
   name = "github.com/berfarah/gobot-store-redis"
   packages = ["."]
-  revision = "6a450f3a348eb702bff058fbef789dc487c230ce"
+  revision = "94dd0620397ebf5655a8be9e33461a3495089eaa"
 
 [[projects]]
   name = "github.com/go-redis/cache"
@@ -82,6 +82,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "9519b87b15805ca46257f079d1c5735c7218e7a1b69c2cb0b9dd84129fc6fe72"
+  inputs-digest = "5ada55a9b1337562d4ec7f30655d91062609f3c86f65348c9c69ce48d03cce7f"
   solver-name = "gps-cdcl"
   solver-version = 1

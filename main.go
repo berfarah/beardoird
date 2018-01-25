@@ -23,5 +23,5 @@ func main() {
 	}).Methods("GET")
 
 	r.Debug(true)
-	r.Run(":" + os.Getenv("PORT"))
+	r.Run()
 }
