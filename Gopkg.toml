@@ -2,13 +2,13 @@
   root-package = "github.com/berfarah/beardroid"
 
 [[constraint]]
-  name = "github.com/berfarah/gobot"
-  version = "0.1.0"
+  name = "github.com/botopolis/bot"
+  version = "0.2.0"
 
 [[constraint]]
-  name = "github.com/berfarah/gobot-store-redis"
-  branch = "master"
+  name = "github.com/botopolis/redis"
+  version = "0.2.0"
 
 [[constraint]]
-  name = "github.com/berfarah/gobot-slack"
-  branch = "master"
+  name = "github.com/botopolis/slack"
+  version = "0.2.0"

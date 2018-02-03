@@ -2,22 +2,28 @@
 
 
 [[projects]]
-  name = "github.com/berfarah/gobot"
+  name = "github.com/botopolis/bot"
   packages = ["."]
-  revision = "b8f8a6f0f76dbdd62b2ccdcee8ab7466a83d5733"
-  version = "v0.1.0"
+  revision = "efb358abb4e58452f303dacdab04768982c1dc7b"
+  version = "v0.2.0"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/berfarah/gobot-slack"
+  name = "github.com/botopolis/redis"
   packages = ["."]
-  revision = "0f5cb4f4a94c486545d273326866e30b68ba7104"
+  revision = "610fa0ece516345820fbce1278d1ecf724da6af6"
+  version = "v0.2.0"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/berfarah/gobot-store-redis"
+  name = "github.com/botopolis/slack"
   packages = ["."]
-  revision = "94dd0620397ebf5655a8be9e33461a3495089eaa"
+  revision = "3a404b1ac554e5fb52dd23cd5a2639e9842b7511"
+  version = "v0.2.1"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
 
 [[projects]]
   name = "github.com/go-redis/cache"
@@ -28,8 +34,8 @@
 [[projects]]
   name = "github.com/go-redis/redis"
   packages = [".","internal","internal/consistenthash","internal/hashtag","internal/pool","internal/proto"]
-  revision = "4021ace05686f632ff17fd824bbed229fc474cf8"
-  version = "v6.8.2"
+  revision = "8b4fa6d443e35ca8b1c37be877285252430b06a3"
+  version = "v6.8.3"
 
 [[projects]]
   branch = "master"
@@ -52,7 +58,7 @@
 [[projects]]
   name = "github.com/nlopes/slack"
   packages = ["."]
-  revision = "c86337c0ef2486a15edd804355d9c73d2f2caed1"
+  revision = "d86785d50d4be9c2e11cfbb0ed601f5dcb22899c"
   version = "v0.1.0"
 
 [[projects]]
@@ -62,10 +68,22 @@
   version = "v1"
 
 [[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
+  version = "v1.2.1"
+
+[[projects]]
   name = "github.com/vmihailenco/msgpack"
   packages = [".","codes"]
-  revision = "428cb44b01569a0bc7d3ea5ab3b93208eddf02f6"
-  version = "v3.2.4"
+  revision = "a2885efdac59c3f72964b70a6b1d9f6053acea2a"
+  version = "v3.2.5"
 
 [[projects]]
   branch = "master"
@@ -82,6 +100,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5ada55a9b1337562d4ec7f30655d91062609f3c86f65348c9c69ce48d03cce7f"
+  inputs-digest = "18a830838a3d41f55ed2c7be0947af0017a87d9c4b358c32d6af044061191711"
   solver-name = "gps-cdcl"
   solver-version = 1
