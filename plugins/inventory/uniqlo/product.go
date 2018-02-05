@@ -6,18 +6,6 @@ import (
 	"strconv"
 )
 
-const (
-	XXS size = "SMA001"
-	XS  size = "SMA002"
-	S   size = "SMA003"
-	M   size = "SMA004"
-	L   size = "SMA005"
-	XL  size = "SMA006"
-	XXL size = "SMA007"
-)
-
-type size string
-
 type UniqloStock struct {
 	InStock  bool   `json:"inStock"`
 	StrCount string `json:"ats"`

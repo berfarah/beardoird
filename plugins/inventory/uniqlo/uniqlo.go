@@ -38,8 +38,11 @@ type Plugin struct {
 }
 
 func (p *Plugin) Load(r *bot.Robot) {
-	r.Respond(bot.Regexp("track[\\s\\w]*(https?://www.uniqlo.com.*)"), func(r bot.Responder) error {
-		p.store.Add(r.User, Product{})
+	r.Respond(bot.Regexp(`track[\s\w]*https?://www.uniqlo.com.*?(\d*).html`), func(r bot.Responder) error {
+		id := r.Match[1]
+		colors, _ := getColors(id)
+		// use colors to present color options and sizes to present size options
+		p.store.Add(r.User, Product{ID: id, Color: colors[1].Code, Size: XXS})
 		return r.Reply("On it, boss!")
 	})
 
@@ -49,17 +52,24 @@ func (p *Plugin) Load(r *bot.Robot) {
 
 	go func() {
 		ticker := time.NewTicker(1 * time.Hour)
-		product := Product{ID: "401925", Color: "COL69", Size: XXS}
+		products := []Product{
+			{ID: "401925", Color: "COL01", Size: XXS},
+			{ID: "401925", Color: "COL09", Size: XXS},
+			{ID: "401925", Color: "COL17", Size: XXS},
+			{ID: "401925", Color: "COL69", Size: XXS},
+		}
 		for range ticker.C {
-			if !product.Available() {
-				continue
-			}
-			err := r.Chat.Direct(bot.Message{
-				User: "nancy",
-				Text: product.URL(),
-			})
-			if err != nil {
-				r.Logger.Error(err.Error())
+			for _, product := range products {
+				if !product.Available() {
+					continue
+				}
+				err := r.Chat.Direct(bot.Message{
+					User: "nancy",
+					Text: product.URL(),
+				})
+				if err != nil {
+					r.Logger.Error(err.Error())
+				}
 			}
 		}
 	}()
