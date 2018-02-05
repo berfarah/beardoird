@@ -57,7 +57,7 @@ func getColors(id string) (colors []color, err error) {
 
 func colorOptions(colors []color) (opts []slack.AttachmentActionOption) {
 	for _, color := range colors {
-		opts = append(opts, []slack.AttachmentActionOption{Text: color.Name, Value: color.Code})
+		opts = append(opts, slack.AttachmentActionOption{Text: color.Name, Value: color.Code})
 	}
 	return opts
 }

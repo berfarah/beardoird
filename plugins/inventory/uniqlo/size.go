@@ -22,7 +22,7 @@ var sizeOptions = []slack.AttachmentActionOption{
 	{Text: "XXL", Value: "XXL"},
 }
 
-const (
+var (
 	XXS = sizes["XXS"]
 	XS  = sizes["XS"]
 	S   = sizes["S"]

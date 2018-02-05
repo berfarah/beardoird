@@ -11,15 +11,17 @@ type UniqloStock struct {
 	StrCount string `json:"ats"`
 }
 
-func (s UniqloStock) Count() int {
+func (s *UniqloStock) Count() int {
 	i, _ := strconv.Atoi(s.StrCount)
 	return i
 }
 
+func (s *UniqloStock) Load(b []byte) { json.Unmarshal(b, s) }
+
 type Product struct {
 	ID    string
 	Color string
-	Size  size
+	Size  string
 }
 
 func (p Product) SKU() string {
@@ -42,10 +44,9 @@ func (p Product) Available() bool {
 	if err != nil {
 		return false
 	}
+
 	var s UniqloStock
-	if err := json.Unmarshal(b, &s); err != nil {
-		return false
-	}
+	s.Load(b)
 
 	return s.InStock
 }
