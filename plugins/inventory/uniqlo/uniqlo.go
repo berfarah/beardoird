@@ -1,10 +1,14 @@
 package uniqlo
 
 import (
+	"encoding/json"
+	"net/http"
 	"sync"
 	"time"
 
 	"github.com/botopolis/bot"
+	slacker "github.com/botopolis/slack"
+	"github.com/nlopes/slack"
 )
 
 const uniqloStockURL = "https://www.uniqlo.com/on/demandware.store/Sites-UniqloUS-Site/default/Product-GetAvailability?pid=401925COL69SMA001000&Quantity=1"
@@ -49,6 +53,30 @@ func (p *Plugin) Load(r *bot.Robot) {
 	r.Respond(bot.Regexp("stop tracking uniqlo item"), func(r bot.Responder) error {
 		return nil
 	})
+
+	r.Router.HandleFunc("interaction", func(w http.ResponseWriter, req *http.Request) {
+		token := "eivqImx4C6ZjYIaSvPGCa2M1"
+		decoder := json.NewDecoder(req.Body)
+		var body slack.AttachmentActionCallback
+		if err := decoder.Decode(&body); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		if body.Token != token {
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		adapter, ok := r.Chat.(slacker.Adapter)
+		if !ok {
+			return
+		}
+
+		go func() { adapter.Client.UpdateMessage(body.Channel.ID, body.MessageTs, "Done!") }()
+
+		w.WriteHeader(http.StatusOK)
+	}).Methods("POST")
 
 	go func() {
 		ticker := time.NewTicker(1 * time.Hour)
