@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/berfarah/gobot"
+	"github.com/botopolis/bot"
 	"github.com/nlopes/slack"
 )
 
@@ -33,7 +33,7 @@ var productBySku = map[string]*Product{
 }
 var client = &http.Client{}
 
-func (m main) Load(r *gobot.Robot) {
+func (m main) Load(r *bot.Robot) {
 	ticker := time.NewTicker(1 * time.Hour)
 	checkStock(r)
 	for range ticker.C {
@@ -41,11 +41,11 @@ func (m main) Load(r *gobot.Robot) {
 	}
 }
 
-func checkStock(r *gobot.Robot) {
+func checkStock(r *bot.Robot) {
 	decodeRequest()
 	if msg, ok := stockMessage(); ok {
 		r.Logger.Debug("Ludlow: Items in stock")
-		r.Chat.Send(gobot.Message{
+		r.Chat.Send(bot.Message{
 			Room:   "@bernardo",
 			Text:   "",
 			Params: msg,
