@@ -4,26 +4,26 @@
 [[projects]]
   name = "github.com/botopolis/bot"
   packages = ["."]
-  revision = "2afbc53f6b8f3324cc5b8f37627a48e0db881ad3"
-  version = "v0.3.0"
+  revision = "86fafd6ef043ee02475bee9a12293cb047b9a847"
+  version = "v0.4.2"
 
 [[projects]]
   name = "github.com/botopolis/redis"
   packages = ["."]
-  revision = "28cb6e23c5a67d6a203fc68edd22ac3cb1f68063"
-  version = "v0.2.1"
+  revision = "8e8b849384bc2b5edc10add66b6faf8686ab47c9"
+  version = "v0.2.2"
 
 [[projects]]
+  branch = "action"
   name = "github.com/botopolis/slack"
   packages = ["."]
-  revision = "379a29ffcd90d2b76f6d3670db7957cb64ffd0c8"
-  version = "v0.2.2"
+  revision = "9e4d626732e974d0a24134e48fc91ea051ee8ac5"
 
 [[projects]]
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
-  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
-  version = "v1.1.0"
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
 
 [[projects]]
   name = "github.com/go-redis/cache"
@@ -32,8 +32,8 @@
     "internal/lrucache",
     "internal/singleflight"
   ]
-  revision = "3f6cdf066d4206924422d4dcdb2cc7b93cfc600d"
-  version = "v6.3.4"
+  revision = "c58ada1e23a3b66593f81c70572c20a0bb805a90"
+  version = "v6.3.5"
 
 [[projects]]
   name = "github.com/go-redis/redis"
@@ -43,39 +43,50 @@
     "internal/consistenthash",
     "internal/hashtag",
     "internal/pool",
-    "internal/proto"
+    "internal/proto",
+    "internal/singleflight",
+    "internal/util"
   ]
-  revision = "8b4fa6d443e35ca8b1c37be877285252430b06a3"
-  version = "v6.8.3"
+  revision = "f3bba01df2026fc865f7782948845db9cf44cf23"
+  version = "v6.14.1"
 
 [[projects]]
   name = "github.com/golang/protobuf"
   packages = ["proto"]
-  revision = "925541529c1fa6821df4e44ce2723319eb2be768"
-  version = "v1.0.0"
+  revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/gorilla/context"
   packages = ["."]
-  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
-  version = "v1.1"
+  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+  version = "v1.1.1"
 
 [[projects]]
   name = "github.com/gorilla/mux"
   packages = ["."]
-  revision = "53c1911da2b537f792e7cafcb446b05ffe33b996"
-  version = "v1.6.1"
+  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
+  version = "v1.6.2"
+
+[[projects]]
+  name = "github.com/gorilla/websocket"
+  packages = ["."]
+  revision = "66b9c49e59c6c48f0ffce28c2d8b8a5678502c6d"
+  version = "v1.4.0"
 
 [[projects]]
   name = "github.com/nlopes/slack"
-  packages = ["."]
-  revision = "d86785d50d4be9c2e11cfbb0ed601f5dcb22899c"
+  packages = [
+    ".",
+    "slackutilsx"
+  ]
+  revision = "752f784a75e8b640f048a8a453466cca64c83a47"
 
 [[projects]]
-  name = "github.com/op/go-logging"
+  branch = "master"
+  name = "github.com/pkg/errors"
   packages = ["."]
-  revision = "b2cb9fa56473e98db8caba80237377e83fe44db5"
-  version = "v1"
+  revision = "c059e472caf75dbe73903f6521a20abac245b17f"
 
 [[projects]]
   name = "github.com/pmezard/go-difflib"
@@ -86,8 +97,8 @@
 [[projects]]
   name = "github.com/stretchr/testify"
   packages = ["assert"]
-  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
-  version = "v1.2.1"
+  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
+  version = "v1.2.2"
 
 [[projects]]
   name = "github.com/vmihailenco/msgpack"
@@ -95,17 +106,14 @@
     ".",
     "codes"
   ]
-  revision = "b83fb55e0632418103602b3b23851cabc5d11762"
-  version = "v3.2.8"
+  revision = "b5e691b1eb52a28c05e67ab9df303626c095c23b"
+  version = "v3.3.3"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = [
-    "context",
-    "websocket"
-  ]
-  revision = "f5dfe339be1d06f81b22525fe34671ee7d2c8904"
+  packages = ["context"]
+  revision = "4dfa2610cdf3b287375bbba5b8f2a14d3b01d8de"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -120,12 +128,12 @@
     "internal/modules",
     "internal/remote_api"
   ]
-  revision = "150dc57a1b433e64154302bdc40b6bb8aefa313a"
-  version = "v1.0.0"
+  revision = "ae0ab99deb4dc413a2b4bd6c8bdd0eb67f1e4d06"
+  version = "v1.2.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7e8326e1ffb440f17434f8b7bafec8e50a21386e25812213d0837fd1f7a94cd6"
+  inputs-digest = "698765e7ca3b33abe1f237caf0fc2774ff757c54f1aa959f6d9b11229d53002c"
   solver-name = "gps-cdcl"
   solver-version = 1

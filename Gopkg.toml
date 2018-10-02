@@ -1,9 +1,9 @@
 [metadata.heroku]
   root-package = "github.com/berfarah/beardroid"
 
-[[constraint]]
+[[override]]
   name = "github.com/botopolis/bot"
-  version = "0.3.0"
+  version = "0.4.2"
 
 [[constraint]]
   name = "github.com/botopolis/redis"
@@ -11,4 +11,4 @@
 
 [[constraint]]
   name = "github.com/botopolis/slack"
-  version = "0.2.0"
+  branch = "action"
